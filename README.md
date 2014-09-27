@@ -69,4 +69,3 @@ chmod a+x scriptmondediefr.sh && ./scriptmondediefr.sh
 ```
 
 To manage users, just lauch the script again.
-
