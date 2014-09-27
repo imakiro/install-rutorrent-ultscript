@@ -1,3 +1,10 @@
+# Rtorrent/rutorrent/munin/seedbox-manager install script
+# Original script from exrat => https://bitbucket.org/exrat/install-rutorrent
+# I (imakiro) translated it and extended it, this is a WIP version, please do know what you do if you use it.
+
+## French first, English goes next [here][english]
+
+
 # Script d'installation ruTorrent / Nginx v 1.3
 
 * Nécessite Debian 7.x - 32/64 bits & un serveur fraîchement installé
@@ -35,3 +42,18 @@ Pour gérer vos utilisateurs ultérieurement, il vous suffit de relancer le scri
 
 #### Inspiration:
 - [hexodark](https://github.com/gaaara/)
+
+
+## (english) English version:
+
+# Install script for ruTorrent on Nginx v 1.3
+* Multi-User capable
+* Needs a clean new install of Debian 7 wheezy (be it 64 or 32 bits)
+* FTP powered by VsFTPD (with FTP and FTPS on port 21)
+* Fail2ban configured on nginx, FTP and ssh.
+* Php proxy to access internet through your server
+* Seedbox Manager to help you with users.
+
+The original script was extracted from a tutorial of Magikalex on a french website named mondédié.fr, and was created by Ex_Rat, helped by Aliochka & Meister (Munin and VsFTPD config files), Albaret (for user management), Jedediah (for web manager theming), Hydrog3n & Backtoback (seedbox manager) : 
+[Installer ruTorrent sur Debian {nginx & php-fpm}](http://mondedie.fr/viewtopic.php?id=5302)
+
