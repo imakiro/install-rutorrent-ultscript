@@ -1,6 +1,6 @@
-## Rtorrent/rutorrent/munin/seedbox-manager install script
-## Original script from exrat => https://bitbucket.org/exrat/install-rutorrent
-## I (imakiro) translated it and extended it, this is a WIP version, please do know what you do if you use it.
+### Rtorrent/rutorrent/munin/seedbox-manager install script
+### Original script from exrat => https://bitbucket.org/exrat/install-rutorrent
+### I (imakiro) translated it and extended it, this is a WIP version, please do know what you do if you use it.
 
 ## French first, English goes next [here](https://github.com/imakiro/install-rutorrent-ultscript#english-english-version)
 
