@@ -112,6 +112,24 @@ echo -n -e "${CGREEN}Do you want to install a FTP server ?(y/n): $CEND"
 read SERVFTP
 echo ""
 
+# installation BittorentSync
+echo ""
+echo -n -e "${CGREEN}Do you want to install BittorentSync ?(y/n): $CEND"
+read BTSYNC
+echo ""
+
+# SSH port change
+echo ""
+echo -n -e "${CGREEN}Do you wish to chnage the default ssh port?(y/n): $CEND"
+read REPONSESSH
+if ["$REPONSESSH" = "y"]
+	echo -n -e "${CGREEN}Please enter the new port number : $CEND"
+	read NEWSSHPORT
+	
+echo ""
+
+
+
 # récupération 5% root sur /home ou /home/user si présent
 FS=$(df -h | grep /home/$USER | cut -c 6-9)
 
@@ -185,6 +203,15 @@ deb-src http://nginx.org/packages/debian/ wheezy nginx ">> /etc/apt/sources.list
 
 # ajout des clés
 
+#BTSync
+apt-key adv --keyserver keys.gnupg.net --recv-keys 6BF18B15
+CODENAME=$(lsb_release -cs | sed -n '/lucid\|precise\|quantal\|raring\|saucy\|trusty\|squeeze\|wheezy\|jessie\|sid/p')
+echo "" >> /etc/apt/sources.list
+echo "#### BitTorrent Sync - see: http://forum.bittorrent.com/topic/18974-debian-and-ubuntu-server-packages-for-bittorrent-sync-121-1/" >> /etc/apt/sources.list
+echo "## Run this command: apt-key adv --keyserver keys.gnupg.net --recv-keys 6BF18B15" >> /etc/apt/sources.list
+echo "deb http://debian.yeasoft.net/btsync ${CODENAME:-sid} main" >> /etc/apt/sources.list
+echo "deb-src http://debian.yeasoft.net/btsync ${CODENAME:-sid} main" >> /etc/apt/sources.list
+
 # dotdeb
 cd /tmp
 wget http://www.dotdeb.org/dotdeb.gpg
@@ -205,7 +232,7 @@ echo ""
 echo -e "${CBLUE}Server Update/upgrade$CEND     ${CGREEN}Done !$CEND"
 echo ""
 
-$packetg install -y htop openssl python build-essential libssl-dev pkg-config whois libcurl4-openssl-dev libsigc++-2.0-dev libncurses5-dev nginx vim nano ccze screen subversion apache2-utils curl php5 php5-cli php5-fpm php5-curl php5-geoip git unrar rar zip ffmpeg buildtorrent mediainfo fail2ban ntp ntpdate munin
+$packetg install -y btsync htop libperl-dev openssl python libterm-readline-gnu-perl build-essential libssl-dev pkg-config whois libcurl4-openssl-dev libsigc++-2.0-dev libncurses5-dev nginx vim nano ccze screen subversion apache2-utils curl php5 php5-cli php5-fpm php5-curl php5-geoip git unrar rar zip ffmpeg buildtorrent mediainfo fail2ban ntp ntpdate munin
 echo ""
 echo -e "${CBLUE}Installing essentials packets$CEND     ${CGREEN}Done !$CEND"
 echo ""
@@ -985,9 +1012,12 @@ echo -e "${CBLUE}Configuring html logs and Logrotation$CEND     ${CGREEN}Done !$
 echo ""
 
 # SSH config
+perl -pi -e "s/Port 22/Port $NEWSSHPORT/g" /etc/ssh/sshd_config
 sed -i "s/Subsystem[[:blank:]]sftp[[:blank:]]\/usr\/lib\/openssh\/sftp-server/Subsystem sftp internal-sftp/g;" /etc/ssh/sshd_config
 sed -i "s/UsePAM/#UsePAM/g;" /etc/ssh/sshd_config
-
+perl -pi -e "s/PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
+perl -pi -e "s/#Protocol 2/Protocol 2/g" /etc/ssh/sshd_config
+perl -pi -e "s/X11Forwarding yes/X11Forwarding no/g" /etc/ssh/sshd_config
 # chroot user
 echo "Match User $USER
 ChrootDirectory /home/$USER">> /etc/ssh/sshd_config
