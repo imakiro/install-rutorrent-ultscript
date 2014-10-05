@@ -125,7 +125,7 @@ read REPONSESSH
 if ["$REPONSESSH" = "y"]
 	echo -n -e "${CGREEN}Please enter the new port number : $CEND"
 	read NEWSSHPORT
-	
+fi	
 echo ""
 
 
@@ -2016,8 +2016,6 @@ echo -e "${CGREEN}Elles vous permettront de vous connecter sur ruTorrent,\nSeedb
 echo ""
 fi
 done
-
-else
 
 ################################################
 # lancement gestion des utilisateurs ruTorrent #
