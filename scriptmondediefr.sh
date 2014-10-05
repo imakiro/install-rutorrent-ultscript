@@ -122,10 +122,10 @@ echo ""
 echo ""
 echo -n -e "${CGREEN}Do you wish to chnage the default ssh port?(y/n): $CEND"
 read REPONSESSH
-if ["$REPONSESSH" = "y"]
+if ["$REPONSESSH" = "y"];then
 	echo -n -e "${CGREEN}Please enter the new port number : $CEND"
 	read NEWSSHPORT
-fi	
+fi
 echo ""
 
 
