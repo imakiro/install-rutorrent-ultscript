@@ -1012,12 +1012,14 @@ echo -e "${CBLUE}Configuring html logs and Logrotation$CEND     ${CGREEN}Done !$
 echo ""
 
 # SSH config
+if [ "$REPONSESSH" = "y" ];then
 perl -pi -e "s/Port 22/Port $NEWSSHPORT/g" /etc/ssh/sshd_config
 sed -i "s/Subsystem[[:blank:]]sftp[[:blank:]]\/usr\/lib\/openssh\/sftp-server/Subsystem sftp internal-sftp/g;" /etc/ssh/sshd_config
 sed -i "s/UsePAM/#UsePAM/g;" /etc/ssh/sshd_config
 perl -pi -e "s/PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
 perl -pi -e "s/#Protocol 2/Protocol 2/g" /etc/ssh/sshd_config
 perl -pi -e "s/X11Forwarding yes/X11Forwarding no/g" /etc/ssh/sshd_config
+fi
 # chroot user
 echo "Match User $USER
 ChrootDirectory /home/$USER">> /etc/ssh/sshd_config
