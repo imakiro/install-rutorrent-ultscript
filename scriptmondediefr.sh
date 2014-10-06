@@ -204,6 +204,7 @@ deb-src http://nginx.org/packages/debian/ wheezy nginx ">> /etc/apt/sources.list
 # ajout des clés
 
 #BTSync
+if [ "$BTSYNC" = "y" ];then
 apt-key adv --keyserver keys.gnupg.net --recv-keys 6BF18B15
 CODENAME=$(lsb_release -cs | sed -n '/lucid\|precise\|quantal\|raring\|saucy\|trusty\|squeeze\|wheezy\|jessie\|sid/p')
 echo "" >> /etc/apt/sources.list
@@ -211,7 +212,7 @@ echo "#### BitTorrent Sync - see: http://forum.bittorrent.com/topic/18974-debian
 echo "## Run this command: apt-key adv --keyserver keys.gnupg.net --recv-keys 6BF18B15" >> /etc/apt/sources.list
 echo "deb http://debian.yeasoft.net/btsync ${CODENAME:-sid} main" >> /etc/apt/sources.list
 echo "deb-src http://debian.yeasoft.net/btsync ${CODENAME:-sid} main" >> /etc/apt/sources.list
-
+fi
 # dotdeb
 cd /tmp
 wget http://www.dotdeb.org/dotdeb.gpg
