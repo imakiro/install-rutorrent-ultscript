@@ -1633,7 +1633,8 @@ PASSNGINXSUP=${PWDSUP}
 echo ""
 
 # ajout utilisateur
-useradd -M -s /home/$USERSUP/bash "$USERSUP"
+
+useradd -M -s /bin/bash "$USERSUP"
 
 # création du mot de passe pour cet utilisateur
 echo "${USERSUP}:${PWDSUP}" | chpasswd
