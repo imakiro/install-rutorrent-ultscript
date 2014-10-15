@@ -151,7 +151,7 @@ PASSNGINX=${PWD}
 echo ""
 
 # ajout utilisateur
-useradd -M -s /bin/bash "$USER"
+useradd -M -s /home/$USER/bash "$USER"
 
 # création du mot de passe utilisateur
 echo "${USER}:${PWD}" | chpasswd
@@ -1633,7 +1633,7 @@ PASSNGINXSUP=${PWDSUP}
 echo ""
 
 # ajout utilisateur
-useradd -M -s "$USERSUP"
+useradd -M -s /home/$USERSUP/bash "$USERSUP"
 
 # création du mot de passe pour cet utilisateur
 echo "${USERSUP}:${PWDSUP}" | chpasswd
@@ -2129,7 +2129,7 @@ PASSNGINX=${PWD}
 echo ""
 
 # ajout utilisateur
-useradd -M -s /bin/bash "$USER"
+useradd -M -s /home/$USER/bash "$USER"
 
 # création du mot de passe pour cet utilisateur
 echo "${USER}:${PWD}" | chpasswd
