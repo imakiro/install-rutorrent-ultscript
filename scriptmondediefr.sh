@@ -120,7 +120,7 @@ echo ""
 
 # SSH port change
 echo ""
-echo -n -e "${CGREEN}Do you wish to chnage the default ssh port?(y/n): $CEND"
+echo -n -e "${CGREEN}Do you wish to change the default ssh port?(y/n): $CEND"
 read REPONSESSH
 if [ "$REPONSESSH" = "y" ];then
 	echo -n -e "${CGREEN}Please enter the new port number : $CEND"
@@ -2277,7 +2277,7 @@ EOF
 # chroot user supplémentaire
 echo "Match User $USER
 ChrootDirectory /home/$USER">> /etc/ssh/sshd_config
-
+ln -s /bin/bash /home/$USER/bash
 service ssh restart
 
 # permission
